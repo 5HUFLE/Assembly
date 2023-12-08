@@ -1,0 +1,105 @@
+&& is and
+|| is or
+!= is not equals
+! is not
+
+extern int subnums(int num1, int num2);     //By putting a semi colon and writting extern after and before a function respectively you can define it later or call it from another module
+
+gcc sep5.c subnum.c -o sep5     //remember to excute both c Sfiles though
+
+gcc funcinfunc.c -static -g -o funcinfunc   //use -static -g to run gdb (a debug console)
+
+
+Sep 7 ------------------------------------------------------------
+
+If you use math function then you have to use (-lm) while running the code
+gcc power.c -lm -o power
+
+
+Sep 12----------------------------------------------------------
+& is used to  get the address of the variable
+So &input1 gives you the memory address of the input1 variable
+char instring[32] in input.c frees the 32 memories to take input but doesnt limit to 32, 
+it might overflow to other memories. 
+To limit the number of char scanf takes use the number of characters between % and s
+%31s here it only takes 31 characters
+
+In stringprocessing1.c in the while loop \0 is the null terminator of the string
+Make sure to use single quote to denote null terminator '\0' OR any characters
+
+Sep 14-------------------------------------------------------------------------
+char fmtstring[]="%[^\n]31s"; in strings2.c shows what kind of input the user gives the input user gives and number of characters the user gives
+
+Sep 19-------------------------------------------------------------------------
+* in     printf("The thing pointed to by prt1 is %c \n",*myptr1);
+shows what is it pointing to so here it returns e from Hello check array.c in sep19_class
+
+Oct 19---------------------------------------------------------------------------
+Registers w0-w19 are temporary so subroutines are not obligated to store them, but
+registers above w19 are forced to store in the subroutines
+
+Stack pointer sp should be multiple of 16
+
+Oct 24---------------------------------------------------------------------------
+Memory allocation in Assembly:
+
+Two types of memory allocation:
+1. Static: memory declared before complie or programs rus
+2. Dynamic: We dont know what goes in the memory and we allocate it as the need of the program serves
+    malloc(): returns a pointer to a section in the HEAP memory
+        When using malloc check if you get a null pointer 
+    stack: put data in the stack, preferrably for calling a function
+
+Heap memory grows upwards and stack memory grows upwards
+
+
+-------------------------------------------------------------------------------------
+
+Registers s and d are for floating points while registers x and w are for integers
+
+YOu cant use the instruction     mov w1,#-1 because -1 occupies 32 bits and the instruction 
+requires 32 bit for operation
+so if you want to use -ve number you do MOVN but be careful
+MOVN just flips the bits doesnt add 1, so you have to give (number -1) as input
+so if you want 7 you pass MOVN x0, =6 (6=7-1)
+
+
+
+    ldr x0, = instr2
+    ldr x1, = mynum
+    bl scanf
+    //loading memory address in x1
+    ldr x1,=mynum  
+    ldr x0,[x1]  // Indirect reference i.e load x0 with the value of x1
+
+
+---------------------------------------------------------------------------------------
+To convert c to Assembly
+gcc -S nameoffile.c -o nameoffile.s
+
+0xDEADBEEF is 32 bits where each char occupies 4 bits
+
+addition instructions: add, addc, adds, adcs
+so do adds first and then adcs
+
+
+---------------------------------------------------------------------------------------
+
+gcc cant work on a program that doesnot have a main
+gcc stringlength.o test1.c -o test1
+here stringlength.o has came from stringlength.assembly
+
+
+
+-----------------------------------------------------------------------------------
+scanf %15s --> limit the number of chars to 15
+scanf %15[^/n]s --> ONly break scanf when its /n
+
+
+-----------------------------------------------------------------------------
+
+Commands to run to check assembly as gdb
+
+ as funwithfloatsfinal.asm -g -o funwithfloatsfinal.o
+gcc funwithfloatsfinal.o -g -static -o funwithfloatsfinal
+ ./funwithfloatsfinal 
