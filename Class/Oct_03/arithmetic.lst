@@ -1,0 +1,42 @@
+AARCH64 GAS  arithmetic.asm 			page 1
+
+
+   1              	.data
+   2 0000 54686520 	outstr: .asciz "The sum of %i and %i is %i. \n"
+   2      73756D20 
+   2      6F662025 
+   2      6920616E 
+   2      64202569 
+   3              	
+   4              	.text
+   5              	
+   6              	
+   7              	
+   8              	.global main
+   9              	main:
+  10 0000 FD7BBFA9 	    stp x29, x30, [sp, #-16]!
+  11 0004 41008052 	    mov w1, #2
+  12 0008 62008052 	    mov w2, #3
+  13 000c 2300020B 	    add w3,w1,w2
+  14              	
+  15              	    // printf           (outstr, num1, num2, sum);
+  16              	    // outstr has to go in x0   w1      w2     w3
+  17 0010 C0000058 	    ldr x0, =outstr
+  18 0014 00000094 	    bl printf
+  19 0018 FD7BC1A8 	    ldp x29, x30, [sp], #16
+  20 001c 00008052 	    mov w0, #0
+  21 0020 C0035FD6 	    ret...
+  21      00000000 
+  21      00000000 
+  21      00000000 
+AARCH64 GAS  arithmetic.asm 			page 2
+
+
+DEFINED SYMBOLS
+      arithmetic.asm:2      .data:0000000000000000 outstr
+      arithmetic.asm:9      .text:0000000000000000 main
+      arithmetic.asm:10     .text:0000000000000000 $x
+      arithmetic.asm:21     .text:0000000000000028 $d
+
+UNDEFINED SYMBOLS
+printf
