@@ -103,3 +103,6 @@ Commands to run to check assembly as gdb
  as funwithfloatsfinal.asm -g -o funwithfloatsfinal.o
 gcc funwithfloatsfinal.o -g -static -o funwithfloatsfinal
  ./funwithfloatsfinal 
+
+--------------------------------------------------------------------------------
+Assembly functinos typically return on x0,d0 depending on the type they are double or other
